@@ -459,7 +459,7 @@ int name_release(struct conn *conn, const char *name)
 
 int name_list(struct conn *conn, uint64_t flags)
 {
-	struct kdbus_cmd_name_list cmd_list;
+	struct kdbus_cmd_name_list __attribute__ ((__aligned__(8))) cmd_list;
 	struct kdbus_name_list *list;
 	struct kdbus_cmd_name *name;
 	int ret;

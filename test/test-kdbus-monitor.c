@@ -141,7 +141,7 @@ int main(int argc, char **argv)
 	int output_fd;
 	int ret;
 	char *bus, *file;
-	struct kdbus_cmd_monitor cmd_monitor;
+	struct kdbus_cmd_monitor __attribute__ ((__aligned__(8))) cmd_monitor;
 	struct pollfd fd;
 
 	if (argc < 3) {

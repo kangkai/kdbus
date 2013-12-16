@@ -29,8 +29,8 @@ enum {
 };
 
 struct kdbus_conn {
-	int fd;
 	struct kdbus_cmd_hello hello;
+	int fd;
 	void *buf;
 	size_t size;
 };
@@ -130,7 +130,7 @@ static void free_conn(struct kdbus_conn *conn)
 
 static int conn_is_name_owner(const struct kdbus_conn *conn, uint64_t flags, const char *n)
 {
-	struct kdbus_cmd_name_list cmd_list;
+	struct kdbus_cmd_name_list __attribute__ ((__aligned__(8))) cmd_list;
 	struct kdbus_name_list *list;
 	struct kdbus_cmd_name *name;
 	int found = 0;
@@ -353,7 +353,7 @@ static int check_busmake(struct kdbus_check_env *env)
 
 static int check_hello(struct kdbus_check_env *env)
 {
-	struct kdbus_cmd_hello hello;
+	struct kdbus_cmd_hello __attribute__ ((__aligned__(8))) hello;
 	int fd, ret;
 
 	memset(&hello, 0, sizeof(hello));

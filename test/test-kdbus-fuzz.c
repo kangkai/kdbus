@@ -85,7 +85,7 @@ static int make_bus(void)
 	struct {
 		struct kdbus_cmd_bus_make head;
 		char name[64];
-	} bus_make;
+	} __attribute__ ((__aligned__(8))) bus_make;
 	char name[10];
 	char *bus;
 	unsigned int i;
